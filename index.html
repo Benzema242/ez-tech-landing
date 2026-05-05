@@ -1,0 +1,2122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>EZ Tech Solutions — Fast & Quality Tech Services in Nassau, Bahamas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #050b1f;
+    --navy-mid: #0a1535;
+    --navy-light: #0f1f4a;
+    --navy-card: #0d1840;
+    --gold: #d4a017;
+    --gold-light: #f0c040;
+    --blue: #1a7fd4;
+    --blue-bright: #3da9ff;
+    --blue-glow: #60c4ff;
+    --white: #f0f4ff;
+    --muted: #7a8ab0;
+    --font-head: 'Barlow Condensed', sans-serif;
+    --font-body: 'Barlow', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Circuit board background pattern */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(26,127,212,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26,127,212,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 0 5%;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(5,11,31,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(212,160,23,0.15);
+    transition: background 0.3s;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .nav-logo img {
+    height: 44px;
+    width: auto;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  .btn-primary {
+    background: var(--gold);
+    color: #050b1f;
+    padding: 10px 24px;
+    border-radius: 4px;
+    font-family: var(--font-head);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-1px);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    padding: 10px 24px;
+    border-radius: 4px;
+    font-family: var(--font-head);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 2px solid rgba(255,255,255,0.3);
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--blue-bright);
+    color: var(--blue-bright);
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--white);
+    transition: all 0.3s;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 100px 5% 80px;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .hero-bg video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.35;
+    z-index: 0;
+  }
+
+  .hero-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(5,11,31,0.55) 0%, transparent 70%),
+      linear-gradient(180deg, rgba(5,11,31,0.7) 0%, rgba(5,11,31,0.4) 40%, rgba(5,11,31,0.85) 100%);
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 860px;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(26,127,212,0.15);
+    border: 1px solid rgba(61,169,255,0.3);
+    color: var(--blue-glow);
+    font-family: var(--font-head);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+  }
+
+  .hero-logo {
+    height: 110px;
+    width: auto;
+    margin-bottom: 28px;
+    filter: drop-shadow(0 0 20px rgba(61,169,255,0.4));
+  }
+
+  .hero h1 {
+    font-family: var(--font-head);
+    font-size: clamp(42px, 7vw, 88px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 .accent { color: var(--gold); }
+  .hero h1 .blue-accent { color: var(--blue-bright); }
+
+  .hero-sub {
+    font-size: clamp(16px, 2.5vw, 20px);
+    color: var(--muted);
+    font-weight: 400;
+    max-width: 580px;
+    margin: 0 auto 36px;
+    line-height: 1.6;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+  }
+
+  .hero-ctas .btn-primary {
+    font-size: 18px;
+    padding: 14px 36px;
+  }
+
+  .hero-ctas .btn-outline {
+    font-size: 18px;
+    padding: 14px 36px;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 48px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-number {
+    font-family: var(--font-head);
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 4px;
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-pad {
+    padding: 96px 5%;
+  }
+
+  .section-pad-sm {
+    padding: 64px 5%;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: var(--font-head);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: var(--font-head);
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+
+  .section-sub {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 560px;
+    line-height: 1.6;
+  }
+
+  /* ── SERVICES ── */
+  .services-bg {
+    background: var(--navy-mid);
+    border-top: 1px solid rgba(212,160,23,0.12);
+    border-bottom: 1px solid rgba(212,160,23,0.12);
+  }
+
+  .tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 48px;
+    border: 1px solid rgba(61,169,255,0.2);
+    border-radius: 6px;
+    overflow: hidden;
+    width: fit-content;
+  }
+
+  .tab-btn {
+    padding: 12px 32px;
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    font-family: var(--font-head);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-right: 1px solid rgba(61,169,255,0.2);
+  }
+
+  .tab-btn:last-child { border-right: none; }
+
+  .tab-btn.active {
+    background: var(--blue);
+    color: white;
+  }
+
+  .tab-btn:hover:not(.active) {
+    background: rgba(26,127,212,0.1);
+    color: var(--white);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .service-card {
+    background: var(--navy-card);
+    border: 1px solid rgba(61,169,255,0.12);
+    border-radius: 8px;
+    padding: 28px;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+
+  .service-card:hover {
+    border-color: rgba(61,169,255,0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(26,127,212,0.15);
+  }
+
+  .service-icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(26,127,212,0.15);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+
+  .service-icon svg {
+    width: 22px;
+    height: 22px;
+    stroke: var(--blue-bright);
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .service-card h3 {
+    font-family: var(--font-head);
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: 8px;
+    color: var(--white);
+  }
+
+  .service-card p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .service-tag {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 3px 10px;
+    background: rgba(212,160,23,0.12);
+    border: 1px solid rgba(212,160,23,0.25);
+    border-radius: 2px;
+    font-size: 11px;
+    font-family: var(--font-head);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ── FEATURED SERVICES ── */
+  .featured-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2px;
+    background: rgba(61,169,255,0.08);
+    border: 1px solid rgba(61,169,255,0.12);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .feature-block {
+    background: var(--navy-card);
+    padding: 48px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .feature-block:hover {
+    background: var(--navy-light);
+  }
+
+  .feature-number {
+    font-family: var(--font-head);
+    font-size: 72px;
+    font-weight: 900;
+    line-height: 1;
+    color: rgba(61,169,255,0.12);
+    letter-spacing: -0.02em;
+  }
+
+  .feature-block h3 {
+    font-family: var(--font-head);
+    font-size: 28px;
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 1.1;
+  }
+
+  .feature-block h3 span { color: var(--gold); }
+
+  .feature-block p {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .feature-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .feature-list li {
+    font-size: 14px;
+    color: var(--white);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .feature-list li::before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  /* ── PRICING ── */
+  .pricing-bg {
+    background: linear-gradient(180deg, var(--navy) 0%, var(--navy-mid) 50%, var(--navy) 100%);
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .pricing-card {
+    background: var(--navy-card);
+    border: 1px solid rgba(61,169,255,0.15);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .pricing-card-header {
+    background: rgba(26,127,212,0.12);
+    border-bottom: 1px solid rgba(61,169,255,0.15);
+    padding: 20px 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .pricing-card-header h3 {
+    font-family: var(--font-head);
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .pricing-card-header .arrow {
+    color: var(--gold);
+    font-size: 20px;
+  }
+
+  .pricing-items {
+    padding: 20px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .pricing-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .pricing-item:last-child { border-bottom: none; }
+
+  .pricing-item-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--white);
+    line-height: 1.4;
+    flex: 1;
+  }
+
+  .pricing-item-sub {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .pricing-item-price {
+    font-family: var(--font-head);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gold);
+    white-space: nowrap;
+    text-align: right;
+  }
+
+  .pricing-note {
+    background: rgba(212,160,23,0.06);
+    border: 1px solid rgba(212,160,23,0.15);
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin-top: 32px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .pricing-note strong { color: var(--gold); }
+
+  /* ── WHY CHOOSE US ── */
+  .why-bg {
+    background: var(--navy-mid);
+    border-top: 1px solid rgba(212,160,23,0.12);
+    border-bottom: 1px solid rgba(212,160,23,0.12);
+    position: relative;
+    overflow: hidden;
+  }
+  .why-bg .why-photo-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('uploads/pexels-vladimirsrajber-13963756.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.06;
+    z-index: 0;
+  }
+  .why-bg .container { position: relative; z-index: 1; }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 32px;
+    margin-top: 48px;
+  }
+
+  .why-item {
+    text-align: center;
+    padding: 32px 20px;
+  }
+
+  .why-icon {
+    width: 64px;
+    height: 64px;
+    background: rgba(212,160,23,0.1);
+    border: 1px solid rgba(212,160,23,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+  }
+
+  .why-icon svg {
+    width: 28px;
+    height: 28px;
+    stroke: var(--gold);
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .why-item h3 {
+    font-family: var(--font-head);
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: 10px;
+  }
+
+  .why-item p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── STARLINK BANNER ── */
+  .starlink-banner {
+    background: linear-gradient(135deg, #050b1f 0%, #0a1a3a 50%, #050b1f 100%);
+    border-top: 1px solid rgba(61,169,255,0.15);
+    border-bottom: 1px solid rgba(61,169,255,0.15);
+    padding: 72px 5%;
+    position: relative;
+    overflow: hidden;
+  }
+  .starlink-banner .section-photo-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('uploads/pexels-brett-sayles-2881224.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.07;
+    z-index: 0;
+  }
+  .starlink-inner { position: relative; z-index: 1; }
+
+  .starlink-banner::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(61,169,255,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .starlink-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+
+  .starlink-label {
+    font-family: var(--font-head);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--blue-glow);
+    margin-bottom: 16px;
+  }
+
+  .starlink-title {
+    font-family: var(--font-head);
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+
+  .starlink-title span { color: var(--gold); }
+
+  .starlink-desc {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+
+  .starlink-points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .starlink-points li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 15px;
+  }
+
+  .starlink-points li .check {
+    width: 20px;
+    height: 20px;
+    background: rgba(61,169,255,0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .starlink-points li .check svg {
+    width: 11px;
+    height: 11px;
+    stroke: var(--blue-bright);
+    fill: none;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .starlink-visual {
+    background: var(--navy-card);
+    border: 1px solid rgba(61,169,255,0.15);
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+  }
+
+  .starlink-dish {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 24px;
+    background: rgba(26,127,212,0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(61,169,255,0.2);
+  }
+
+  .starlink-dish svg {
+    width: 60px;
+    height: 60px;
+    stroke: var(--blue-bright);
+    fill: none;
+    stroke-width: 1.5;
+  }
+
+  .starlink-price-label {
+    font-size: 13px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+
+  .starlink-price {
+    font-family: var(--font-head);
+    font-size: 52px;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .starlink-price span {
+    font-size: 24px;
+    color: var(--gold);
+  }
+
+  .starlink-trusted {
+    margin-top: 20px;
+    display: inline-block;
+    background: rgba(212,160,23,0.1);
+    border: 1px solid rgba(212,160,23,0.25);
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── BOOKING FORM ── */
+  .booking-bg {
+    background: var(--navy);
+  }
+
+  .booking-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 72px;
+    align-items: start;
+  }
+
+  .booking-info h2 {
+    font-family: var(--font-head);
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+
+  .booking-info h2 span { color: var(--gold); }
+
+  .booking-info p {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 36px;
+  }
+
+  .contact-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .contact-method {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    background: var(--navy-card);
+    border: 1px solid rgba(61,169,255,0.12);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .contact-method:hover {
+    border-color: var(--gold);
+    background: var(--navy-light);
+  }
+
+  .contact-method-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(212,160,23,0.1);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .contact-method-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--gold);
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .contact-method-text .label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .contact-method-text .value {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  /* ── FORM ── */
+  .form-card {
+    background: var(--navy-card);
+    border: 1px solid rgba(61,169,255,0.15);
+    border-radius: 12px;
+    padding: 40px;
+  }
+
+  .form-card h3 {
+    font-family: var(--font-head);
+    font-size: 24px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 28px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(61,169,255,0.18);
+    border-radius: 6px;
+    padding: 12px 16px;
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 15px;
+    transition: border-color 0.2s, background 0.2s;
+    outline: none;
+    appearance: none;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--blue-bright);
+    background: rgba(26,127,212,0.06);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  .form-group select option {
+    background: #0a1535;
+    color: var(--white);
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .form-submit {
+    width: 100%;
+    padding: 14px;
+    background: var(--gold);
+    color: #050b1f;
+    border: none;
+    border-radius: 6px;
+    font-family: var(--font-head);
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    margin-top: 8px;
+  }
+
+  .form-submit:hover {
+    background: var(--gold-light);
+    transform: translateY(-1px);
+  }
+
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 24px;
+  }
+
+  .form-success .check-circle {
+    width: 64px;
+    height: 64px;
+    background: rgba(61,169,255,0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+  }
+
+  .form-success h4 {
+    font-family: var(--font-head);
+    font-size: 24px;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .form-success p {
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #030710;
+    border-top: 1px solid rgba(212,160,23,0.15);
+    padding: 60px 5% 36px;
+  }
+
+  .footer-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+
+  .footer-brand img {
+    height: 52px;
+    width: auto;
+    margin-bottom: 8px;
+    filter: brightness(0.95);
+    margin-left: -6px;
+  }
+
+  .footer-brand p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 280px;
+    margin-top: 4px;
+  }
+
+  .footer-col h4 {
+    font-family: var(--font-head);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-col ul li a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+  }
+
+  .footer-col ul li a:hover { color: var(--white); }
+
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 28px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+  }
+
+  .footer-bottom p {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .footer-bottom .gold { color: var(--gold); }
+
+  /* ── DIVIDER ── */
+  .gold-divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    margin-bottom: 32px;
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 72px;
+      left: 0;
+      right: 0;
+      background: rgba(5,11,31,0.98);
+      padding: 24px 5%;
+      border-bottom: 1px solid rgba(212,160,23,0.15);
+      gap: 20px;
+    }
+    .hamburger { display: flex; }
+    .nav-cta { display: none; }
+
+    .starlink-inner { grid-template-columns: 1fr; gap: 32px; }
+    .booking-grid { grid-template-columns: 1fr; gap: 40px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    .tabs { width: 100%; }
+    .tab-btn { flex: 1; font-size: 13px; padding: 10px 12px; }
+    .hero-stats { gap: 28px; }
+    .stat-number { font-size: 28px; }
+  }
+
+  /* ── SCROLL ANIMATION ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── MOBILE MENU ── */
+  .mobile-nav-cta {
+    display: none;
+  }
+  @media (max-width: 900px) {
+    .mobile-nav-cta {
+      display: block;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <img src="uploads/EZTECHLOGO2.png" alt="EZ Tech Solutions" style="width: 175px; height: 175px" />
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#starlink">Starlink</a></li>
+    <li><a href="#lighting">Lighting</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li class="mobile-nav-cta"><a href="https://ez-tech-appointment-app.vercel.app/" target="_blank" rel="noopener" class="btn-primary">Book Now</a></li>
+  </ul>
+  <a href="https://ez-tech-appointment-app.vercel.app/" target="_blank" rel="noopener" class="btn-primary nav-cta">Book Now</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <video autoplay muted loop playsinline>
+      <source src="uploads/12920663-hd_1920_1080_30fps.mp4" type="video/mp4" />
+    </video>
+  </div>
+  <div class="hero-content">
+
+    <h1>
+      Fast. Quality.<br />
+      <span class="accent">Tech</span> <span class="blue-accent">Services.</span>
+    </h1>
+    <p class="hero-sub">From device repairs and fiber networking to smart lighting and Starlink installation — one team, every solution.</p>
+    <div class="hero-ctas">
+      <a href="https://ez-tech-appointment-app.vercel.app/" target="_blank" rel="noopener" class="btn-primary">Book a Service</a>
+      <a href="#services" class="btn-outline">Explore Services</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-number">10+</div>
+        <div class="stat-label">Services Offered</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Trusted</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">Same</div>
+        <div class="stat-label">Day Service Available</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">24/7</div>
+        <div class="stat-label">Support</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-bg section-pad" id="services">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">What We Do</div>
+      <div class="gold-divider"></div>
+      <h2 class="section-title">Our Services</h2>
+      <p class="section-sub">Comprehensive tech solutions for homes, businesses, and events across Nassau &amp; the Bahamas.</p>
+    </div>
+    <!-- Tabs will be rendered by React -->
+    <div id="services-react" style="margin-top: 40px;"></div>
+  </div>
+</section>
+
+<!-- SECURITY CAMERAS STRIP -->
+<section class="security-strip">
+  <div class="security-strip-inner">
+    <div class="security-img-wrap">
+      <img src="uploads/pexels-life-7463021.jpg" alt="Security camera on brick wall" />
+      <div class="security-img-overlay"></div>
+    </div>
+    <div class="security-img-wrap">
+      <img src="uploads/pexels-lukasz-klimkiewicz-42373578-7364948.jpg" alt="Security camera mounted on ceiling" />
+      <div class="security-img-overlay"></div>
+    </div>
+    <div class="security-img-wrap">
+      <img src="uploads/pexels-atypeek-5966513.jpg" alt="Dome security camera" />
+      <div class="security-img-overlay"></div>
+    </div>
+    <div class="security-text">
+      <div class="section-label" style="margin-bottom:10px;">Security & Surveillance</div>
+      <h3>Keep Your Property<br /><span style="color:var(--gold);">Protected 24/7</span></h3>
+      <p>Professional CCTV and IP camera installation for homes, businesses and commercial properties across Nassau.</p>
+      <a href="https://ez-tech-appointment-app.vercel.app/" target="_blank" rel="noopener" class="btn-primary" style="font-size:15px; padding:10px 24px; margin-top:20px; display:inline-block;">Book Install</a>
+    </div>
+  </div>
+</section>
+
+<style>
+.security-strip {
+  background: var(--navy);
+  overflow: hidden;
+  border-top: 1px solid rgba(61,169,255,0.1);
+  border-bottom: 1px solid rgba(61,169,255,0.1);
+}
+.security-strip-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1.2fr;
+  min-height: 320px;
+}
+.security-img-wrap {
+  position: relative;
+  overflow: hidden;
+}
+.security-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(30%) brightness(0.7);
+  transition: transform 0.5s ease, filter 0.3s ease;
+}
+.security-img-wrap:hover img {
+  transform: scale(1.06);
+  filter: grayscale(0%) brightness(0.85);
+}
+.security-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, transparent 60%, var(--navy) 100%);
+}
+.security-text {
+  background: var(--navy-card);
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-left: 1px solid rgba(61,169,255,0.12);
+}
+.security-text h3 {
+  font-family: var(--font-head);
+  font-size: 28px;
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+.security-text p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+@media (max-width: 900px) {
+  .security-strip-inner {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 200px auto;
+  }
+  .security-img-wrap:last-of-type { display: none; }
+  .security-text {
+    grid-column: 1 / -1;
+    padding: 32px 24px;
+    border-left: none;
+    border-top: 1px solid rgba(61,169,255,0.12);
+  }
+}
+@media (max-width: 600px) {
+  .security-strip-inner { grid-template-columns: 1fr; }
+  .security-img-wrap { display: none; }
+  .security-text { grid-column: 1; }
+}
+</style>
+
+<!-- STARLINK -->
+<section class="starlink-banner" id="starlink">
+  <div class="section-photo-bg"></div>
+  <div class="starlink-inner">
+    <div class="fade-in">
+      <div class="starlink-label">Featured Service</div>
+      <h2 class="starlink-title">Starlink<br /><span>Installation</span><br />Services</h2>
+      <p class="starlink-desc">Professional Starlink installation anywhere in the Bahamas — boats, trailers, homes, job sites, and more. Seamless setup with ongoing support.</p>
+      <ul class="starlink-points">
+        <li>
+          <span class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"></polyline></svg></span>
+          <span>Anywhere in the Bahamas — boats, homes, job sites</span>
+        </li>
+        <li>
+          <span class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"></polyline></svg></span>
+          <span>Seamless transition &amp; configuration</span>
+        </li>
+        <li>
+          <span class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"></polyline></svg></span>
+          <span>Ongoing support &amp; troubleshooting</span>
+        </li>
+        <li>
+          <span class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"></polyline></svg></span>
+          <span>100% Trusted · Professional grade</span>
+        </li>
+      </ul>
+      <div style="margin-top: 32px;">
+        <a href="https://ez-tech-appointment-app.vercel.app/" target="_blank" rel="noopener" class="btn-primary">Book Starlink Install</a>
+      </div>
+    </div>
+    <div class="starlink-visual fade-in">
+      <div class="starlink-dish">
+        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="30" cy="28" rx="22" ry="10" stroke-dasharray="4,3"/>
+          <line x1="30" y1="28" x2="30" y2="50"/>
+          <line x1="20" y1="50" x2="40" y2="50"/>
+          <ellipse cx="30" cy="20" rx="16" ry="8"/>
+          <line x1="30" y1="12" x2="30" y2="5"/>
+          <circle cx="30" cy="4" r="2" fill="rgba(61,169,255,0.5)" stroke="none"/>
+        </svg>
+      </div>
+      <div class="starlink-price-label">Installation Starting At</div>
+      <div class="starlink-price"><span>$</span>150</div>
+      <div class="starlink-trusted">100% Trusted Service</div>
+      <p style="margin-top: 20px; font-size: 13px; color: var(--muted);">Full setup &amp; configuration included<br/>(242) 805-0777</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/message/NXWSA4R4RGQBH1" target="_blank" rel="noopener" class="whatsapp-fab" aria-label="Chat on WhatsApp" style="padding: 13px 20px 13px 16px">
+  <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <span>Chat with Us</span>
+</a>
+
+<style>
+.whatsapp-fab {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  left: auto;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #25D366;
+  color: #fff;
+  text-decoration: none;
+  padding: 13px 20px 13px 16px;
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+  white-space: nowrap;
+}
+.whatsapp-fab:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 28px rgba(37,211,102,0.55);
+}
+@media (max-width: 600px) {
+  .whatsapp-fab span { display: none; }
+  .whatsapp-fab { padding: 14px; border-radius: 50%; bottom: 20px; right: 20px; left: auto; }
+}
+</style>
+
+<!-- LIGHTING -->
+<section class="section-pad" id="lighting">
+  <div class="container">
+    <div class="fade-in" style="text-align: center; margin-bottom: 64px;">
+      <div class="section-label">EZ Tech Lighting</div>
+      <div class="gold-divider" style="margin: 0 auto 32px;"></div>
+      <h2 class="section-title">Turn Your Property Into A<br /><span style="color: var(--gold);">Nighttime Experience</span></h2>
+      <p class="section-sub" style="margin: 0 auto;">Premium smart outdoor &amp; architectural lighting designed for villas, resorts, restaurants &amp; event spaces.</p>
+    </div>
+    <!-- Photo Gallery -->
+    <div class="lighting-gallery fade-in">
+      <div class="gallery-main">
+        <img src="uploads/IMG_9019.JPG" alt="EZ Tech Lighting — luxury resort architectural lighting" />
+      </div>
+      <div class="gallery-side">
+        <div><img src="uploads/IMG_9018.JPG" alt="EZ Tech Lighting — pool and palm tree lighting" /></div>
+        <div><img src="uploads/IMG_9017.JPG" alt="EZ Tech Lighting — dusk villa lighting" /></div>
+        <div><img src="uploads/CD65E469-2727-4F62-8584-D2C7A57CE8B4.PNG" alt="EZ Tech Lighting — outdoor string lights at sunset" /></div>
+        <div><img src="uploads/3AE3F4BA-EA86-4EDE-9554-E4B2D7F37F5F.PNG" alt="EZ Tech Lighting — warm string light ambiance" /></div>
+      </div>
+    </div>
+
+    <style>
+    .lighting-gallery {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 8px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 48px;
+      max-height: 520px;
+    }
+    .gallery-main { overflow: hidden; }
+    .gallery-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .gallery-main img:hover { transform: scale(1.03); }
+    .gallery-side {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .gallery-side div { overflow: hidden; }
+    .gallery-side img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .gallery-side img:hover { transform: scale(1.05); }
+    @media (max-width: 700px) {
+      .lighting-gallery { grid-template-columns: 1fr; max-height: none; }
+      .gallery-main img { max-height: 260px; }
+      .gallery-side { grid-template-columns: 1fr 1fr; }
+      .gallery-side img { max-height: 130px; }
+    }
+    </style>
+
+    <div class="featured-grid fade-in">
+      <div class="feature-block">
+        <div class="feature-number">01</div>
+        <h3>What We <span>Offer</span></h3>
+        <ul class="feature-list">
+          <li>RGBW Architectural Lighting Installation</li>
+          <li>DMX-Controlled Smart Lighting Systems</li>
+          <li>Custom Scene Programming (Ambient · Party · Event)</li>
+          <li>Tablet &amp; Wall Panel Control Integration</li>
+          <li>Event Lighting Design &amp; Direction</li>
+          <li>Maintenance &amp; System Upgrades</li>
+          <li>Full Production Equipment (Rigging, Video, Audio, LED Walls)</li>
+        </ul>
+      </div>
+      <div class="feature-block">
+        <div class="feature-number">02</div>
+        <h3>Who We <span>Serve</span></h3>
+        <ul class="feature-list">
+          <li>Luxury Villas &amp; Private Homes</li>
+          <li>Resorts &amp; Hotels</li>
+          <li>Restaurants &amp; Lounges</li>
+          <li>Event Venues &amp; Live Entertainment</li>
+          <li>Real Estate Developers</li>
+        </ul>
+        <p style="margin-top: 8px; font-size: 14px; color: var(--muted);">Lighting done at Bakers Bay, Abaco and beyond.</p>
+        <a href="https://ez-tech-appointment-app.vercel.app/" target="_blank" rel="noopener" class="btn-primary" style="margin-top: 20px; font-size: 15px; padding: 10px 24px;">Book Free Consultation</a>
+      </div>
+      <div class="feature-block">
+        <div class="feature-number">03</div>
+        <h3>Why EZ Tech <span>Lighting</span></h3>
+        <ul class="feature-list">
+          <li>Built for Caribbean Weather Conditions</li>
+          <li>Professional-Grade DMX Technology</li>
+          <li>Scalable for Any Property Size</li>
+          <li>Permanent Weatherproof Installations</li>
+          <li>Smart Wireless Control Systems</li>
+          <li>Backed by Real Lighting Experience</li>
+        </ul>
+        <p style="margin-top: 12px; font-size: 13px; color: var(--gold); font-style: italic;">"Lighting isn't just decoration — it's an experience."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-bg section-pad" id="pricing">
+  <div class="container">
+    <div class="fade-in" style="text-align: center; margin-bottom: 56px;">
+      <div class="section-label" style="text-align:center;">Transparent Pricing</div>
+      <div class="gold-divider" style="margin: 0 auto 32px;"></div>
+      <h2 class="section-title">Simple,<br /><span style="color: var(--gold);">Competitive Rates</span></h2>
+      <p class="section-sub" style="margin: 0 auto;">Honest pricing for Nassau &amp; the Bahamas. Every job is quoted fairly — no surprises. Materials may be additional.</p>
+    </div>
+
+    <div class="pricing-tiles fade-in">
+      <div class="ptile">
+        <div class="ptile-icon">
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="var(--blue-bright)" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
+        </div>
+        <div class="ptile-name">Device Repairs</div>
+        <div class="ptile-sub">Phones, laptops, consoles</div>
+        <div class="ptile-price">Starting at <span>$14.99</span></div>
+      </div>
+      <div class="ptile">
+        <div class="ptile-icon">
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="var(--blue-bright)" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+        </div>
+        <div class="ptile-name">WiFi &amp; Network Setup</div>
+        <div class="ptile-sub">Router config &amp; optimization</div>
+        <div class="ptile-price">Starting at <span>$80</span></div>
+      </div>
+      <div class="ptile">
+        <div class="ptile-icon">
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="var(--blue-bright)" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg>
+        </div>
+        <div class="ptile-name">Fiber Services</div>
+        <div class="ptile-sub">Install, repair &amp; termination</div>
+        <div class="ptile-price">Starting at <span>$70</span></div>
+      </div>
+      <div class="ptile">
+        <div class="ptile-icon">
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="var(--blue-bright)" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+        </div>
+        <div class="ptile-name">Starlink Installation</div>
+        <div class="ptile-sub">Full setup &amp; configuration</div>
+        <div class="ptile-price">Starting at <span>$150</span></div>
+      </div>
+      <div class="ptile">
+        <div class="ptile-icon">
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="var(--blue-bright)" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        </div>
+        <div class="ptile-name">Security Cameras</div>
+        <div class="ptile-sub">CCTV &amp; network integration</div>
+        <div class="ptile-price">Starting at <span>$120</span></div>
+      </div>
+      <div class="ptile">
+        <div class="ptile-icon">
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="var(--blue-bright)" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17 2 12 7 7 2"/></svg>
+        </div>
+        <div class="ptile-name">IPTV Subscription</div>
+        <div class="ptile-sub">82,000+ HD channels worldwide</div>
+        <div class="ptile-price">Starting at <span>$19.99/mo</span></div>
+      </div>
+      <div class="ptile">
+        <div class="ptile-icon">
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="var(--blue-bright)" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <div class="ptile-name">Smart Lighting</div>
+        <div class="ptile-sub">Architectural &amp; event lighting</div>
+        <div class="ptile-price"><span>Custom Quote</span></div>
+      </div>
+      <div class="ptile ptile-cta">
+        <div class="ptile-name" style="font-size:18px; margin-bottom: 8px;">Not sure what you need?</div>
+        <div class="ptile-sub" style="margin-bottom: 20px;">We'll assess and give you a fair, honest quote.</div>
+        <a href="https://ez-tech-appointment-app.vercel.app/" target="_blank" rel="noopener" class="btn-primary" style="font-size:15px; padding: 10px 24px;">Get a Free Quote</a>
+      </div>
+    </div>
+
+    <p class="pricing-note fade-in" style="text-align:center; margin-top: 32px;">
+      <strong>Note:</strong> All prices are in BSD. Same-day service available. Materials &amp; parts may be additional. Final pricing confirmed at time of booking.
+    </p>
+  </div>
+</section>
+
+<style>
+  .pricing-tiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+  }
+
+  .ptile {
+    background: var(--navy-card);
+    border: 1px solid rgba(61,169,255,0.12);
+    border-radius: 10px;
+    padding: 28px 24px;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+
+  .ptile:hover {
+    border-color: rgba(212,160,23,0.35);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.25);
+  }
+
+  .ptile-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(26,127,212,0.12);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+  }
+
+  .ptile-name {
+    font-family: var(--font-head);
+    font-size: 17px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .ptile-sub {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 14px;
+    line-height: 1.4;
+  }
+
+  .ptile-price {
+    font-size: 13px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .ptile-price span {
+    font-family: var(--font-head);
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--gold);
+    display: block;
+    margin-top: 2px;
+  }
+
+  .ptile-cta {
+    background: rgba(212,160,23,0.06);
+    border-color: rgba(212,160,23,0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+  }
+</style>
+
+<!-- WHY CHOOSE US -->
+<section class="why-bg section-pad">
+  <div class="why-photo-bg"></div>
+  <div class="container">
+    <div class="fade-in" style="text-align: center; margin-bottom: 0;">
+      <div class="section-label" style="text-align: center;">Why Choose EZ Tech</div>
+      <div class="gold-divider" style="margin: 0 auto 32px;"></div>
+      <h2 class="section-title">Built Different.<br /><span style="color: var(--blue-bright);">Built for You.</span></h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item fade-in">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <h3>Same-Day Service</h3>
+        <p>We know downtime costs you. We show up fast and get the job done right the first time.</p>
+      </div>
+      <div class="why-item fade-in">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>100% Trusted</h3>
+        <p>Professional-grade service with a reputation built on reliability across Nassau and beyond.</p>
+      </div>
+      <div class="why-item fade-in">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+        </div>
+        <h3>Local Experts</h3>
+        <p>Deep knowledge of the Bahamian market, climate, and infrastructure — unlike anyone else.</p>
+      </div>
+      <div class="why-item fade-in">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>One Team, All Services</h3>
+        <p>From a cracked screen to a full Starlink install to event lighting — we handle it all under one roof.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT / BOOKING -->
+<section class="booking-bg section-pad" id="contact">
+  <div class="container">
+    <div class="booking-grid">
+      <div class="booking-info fade-in">
+        <div class="section-label">Get In Touch</div>
+        <div class="gold-divider"></div>
+        <h2>Book a Service<br /><span>Today.</span></h2>
+        <p>Ready to get started? Fill out the form and we'll get back to you quickly — or reach out directly by phone or email.</p>
+        <div class="contact-methods">
+          <a href="tel:2428050777" class="contact-method">
+            <div class="contact-method-icon">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.72 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.69a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.49 16a2 2 0 0 1 .51.92z"/></svg>
+            </div>
+            <div class="contact-method-text">
+              <div class="label">Call or WhatsApp</div>
+              <div class="value">(242) 805-0777</div>
+            </div>
+          </a>
+          <a href="mailto:info@ez-techgroup.com" class="contact-method">
+            <div class="contact-method-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="contact-method-text">
+              <div class="label">Email Us</div>
+              <div class="value">info@ez-techgroup.com</div>
+            </div>
+          </a>
+          <div class="contact-method" style="cursor: default;">
+            <div class="contact-method-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="contact-method-text">
+              <div class="label">Service Area</div>
+              <div class="value">Nassau &amp; Surrounding Areas</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-card fade-in" id="booking-form-container">
+        <h3>Request a Service</h3>
+        <form id="bookingForm" action="https://formspree.io/f/mlgzgnvp" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" name="fname" placeholder="John" required />
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" name="lname" placeholder="Smith" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="(242) 000-0000" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="you@email.com" />
+          </div>
+          <div class="form-group">
+            <label for="service">Service Needed</label>
+            <select id="service" name="service" required>
+              <option value="" disabled selected>Select a service...</option>
+              <optgroup label="Tech Solutions">
+                <option>Cell Phone Repair</option>
+                <option>Laptop / Screen Repair</option>
+                <option>Computer Software Installation</option>
+                <option>Game Console Repair</option>
+                <option>Security Camera Installation</option>
+                <option>WiFi / Network Setup</option>
+                <option>TV Mounting</option>
+                <option>IPTV Service</option>
+              </optgroup>
+              <optgroup label="Fiber &amp; Network">
+                <option>Fiber Cable Installation</option>
+                <option>Fiber Repair</option>
+                <option>Starlink Installation</option>
+                <option>Network Configuration</option>
+              </optgroup>
+              <optgroup label="Lighting">
+                <option>Architectural / Smart Lighting</option>
+                <option>Event Lighting</option>
+                <option>Production Equipment (Staging / Audio / Video)</option>
+                <option>Free Lighting Consultation</option>
+              </optgroup>
+              <option>Other / Not Listed</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Tell Us More (Optional)</label>
+            <textarea id="message" name="message" placeholder="Describe what you need, your location, or the best time to reach you..."></textarea>
+          </div>
+          <input type="hidden" name="_subject" value="New Service Request — EZ Tech Solutions" />
+          <button type="submit" class="form-submit">Send Request</button>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <div class="check-circle">
+            <svg viewBox="0 0 24 24" width="28" height="28" stroke="#3da9ff" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </div>
+          <h4>Request Sent!</h4>
+          <p>We'll be in touch shortly!<br />Or call us directly: <strong style="color: var(--gold);">(242) 805-0777</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img src="uploads/EZTECHLOGO2.png" alt="EZ Tech Solutions" style="width: 125px; height: 125px; margin: 0px 0px 1px" />
+      <p>"Providing Fast and Quality Services" — serving Nassau and the Bahamas with professional tech solutions since day one.</p>
+      <p style="margin-top: 6px; font-size: 13px; color: var(--muted);">Mr. Rubens Scutt · Proprietor</p>
+    </div>
+    <div class="footer-col">
+      <h4>Tech Services</h4>
+      <ul>
+        <li><a href="#services">Cell Phone Repairs</a></li>
+        <li><a href="#services">Laptop Repairs</a></li>
+        <li><a href="#services">Security Cameras</a></li>
+        <li><a href="#services">WiFi Setup</a></li>
+        <li><a href="#services">IPTV Services</a></li>
+        <li><a href="#services">TV Mounting</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Infrastructure</h4>
+      <ul>
+        <li><a href="#starlink">Starlink Install</a></li>
+        <li><a href="#pricing">Fiber Services</a></li>
+        <li><a href="#pricing">Network Setup</a></li>
+        <li><a href="#lighting">Smart Lighting</a></li>
+        <li><a href="#lighting">Event Production</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:2428050777">(242) 805-0777</a></li>
+        <li><a href="mailto:info@ez-techgroup.com">info@ez-techgroup.com</a></li>
+        <li><a href="https://ez-tech-appointment-app.vercel.app/" target="_blank" rel="noopener">Book a Service</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 <span class="gold">EZ Tech Solutions</span>. All rights reserved. Nassau, Bahamas.</p>
+    <p style="text-align: center">(242) 805-0777 · info@ez-techgroup.com</p>
+  </div>
+</footer>
+
+<!-- REACT: Services Tabs -->
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel">
+const { useState, useEffect } = React;
+
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "accentColor": "#d4a017",
+  "darkMode": true,
+  "showPricing": true,
+  "ctaText": "Book a Service"
+}/*EDITMODE-END*/;
+
+// ── Services data ──
+const techServices = [
+  { icon: "phone", title: "Cell Phone Repairs", desc: "Screen replacements, battery swaps, water damage, and more for all major brands.", tag: "From $14.99" },
+  { icon: "laptop", title: "Laptop & Screen Repair", desc: "Laptop screen replacements, hardware fixes, and performance tune-ups.", tag: "Quote Available" },
+  { icon: "monitor", title: "Computer Software", desc: "OS installation, virus removal, software setup, and system optimization.", tag: "Same-Day" },
+  { icon: "gamepad", title: "Game Console Repairs", desc: "PlayStation, Xbox, Nintendo — disc errors, HDMI, overheating and more.", tag: "Trusted" },
+  { icon: "camera", title: "Security Camera Install", desc: "Full CCTV setup with network integration for homes and businesses.", tag: "Professional" },
+  { icon: "wifi", title: "WiFi Network Setup", desc: "Router configuration, range optimization, and full network builds.", tag: "$80–$150" },
+  { icon: "tv", title: "TV Mounting & IPTV", desc: "Professional TV wall mounting + IPTV with 82,000+ HD channels.", tag: "IPTV From $19.99/mo" },
+];
+
+const lightingServices = [
+  { icon: "zap", title: "Architectural Lighting", desc: "RGBW smart lighting systems for villas, resorts, and luxury spaces.", tag: "Premium" },
+  { icon: "settings", title: "DMX Smart Systems", desc: "DMX-controlled lighting with tablet & wall panel integration.", tag: "Professional Grade" },
+  { icon: "star", title: "Event Lighting & Direction", desc: "Full-service event lighting design with custom scene programming.", tag: "Custom" },
+  { icon: "speaker", title: "Audio & Video Production", desc: "Live entertainment setup — audio, video, LED walls, staging, rigging.", tag: "Full Line" },
+  { icon: "tool", title: "Equipment Repairs", desc: "Repair and maintenance for production and lighting equipment.", tag: "Expert Service" },
+  { icon: "sun", title: "Outdoor & Scenic", desc: "Permanent weatherproof lighting for any outdoor or architectural space.", tag: "Weather-Built" },
+];
+
+const icons = {
+  phone: <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.72 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.69a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.49 16a2 2 0 0 1 .51.92z"/></svg>,
+  laptop: <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="2" y1="20" x2="22" y2="20"/></svg>,
+  monitor: <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>,
+  gamepad: <svg viewBox="0 0 24 24"><line x1="6" y1="12" x2="10" y2="12"/><line x1="8" y1="10" x2="8" y2="14"/><line x1="15" y1="13" x2="15.01" y2="13"/><line x1="18" y1="11" x2="18.01" y2="11"/><rect x="2" y="6" width="20" height="12" rx="2"/></svg>,
+  camera: <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>,
+  wifi: <svg viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>,
+  unlock: <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>,
+  tv: <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17 2 12 7 7 2"/></svg>,
+  zap: <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>,
+  settings: <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>,
+  star: <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>,
+  speaker: <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><circle cx="12" cy="14" r="4"/><line x1="12" y1="6" x2="12.01" y2="6"/></svg>,
+  tool: <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>,
+  sun: <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>,
+};
+
+function ServiceCard({ icon, title, desc, tag }) {
+  return (
+    <div className="service-card">
+      <div className="service-icon">{icons[icon] || icons.phone}</div>
+      <h3>{title}</h3>
+      <p>{desc}</p>
+      {tag && <span className="service-tag">{tag}</span>}
+    </div>
+  );
+}
+
+function ServicesSection() {
+  const [activeTab, setActiveTab] = useState('tech');
+  const services = activeTab === 'tech' ? techServices : lightingServices;
+
+  return (
+    <div>
+      <div className="tabs">
+        <button className={`tab-btn ${activeTab === 'tech' ? 'active' : ''}`} onClick={() => setActiveTab('tech')}>
+          EZ Tech Solutions
+        </button>
+        <button className={`tab-btn ${activeTab === 'lighting' ? 'active' : ''}`} onClick={() => setActiveTab('lighting')}>
+          EZ Tech Lighting
+        </button>
+      </div>
+      <div className="services-grid">
+        {services.map((s, i) => <ServiceCard key={i} {...s} />)}
+      </div>
+    </div>
+  );
+}
+
+// ── Tweaks ──
+function TweaksApp() {
+  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  return (
+    <TweaksPanel>
+      <TweakSection label="Brand" />
+      <TweakColor label="Accent Color" value={t.accentColor} onChange={v => {
+        setTweak('accentColor', v);
+        document.documentElement.style.setProperty('--gold', v);
+      }} />
+      <TweakSection label="Content" />
+      <TweakToggle label="Show Pricing Section" value={t.showPricing} onChange={v => {
+        setTweak('showPricing', v);
+        const el = document.getElementById('pricing');
+        if (el) el.style.display = v ? '' : 'none';
+      }} />
+      <TweakText label="Hero CTA Text" value={t.ctaText} onChange={v => {
+        setTweak('ctaText', v);
+        document.querySelectorAll('a.btn-primary').forEach(btn => {
+          if (btn.getAttribute('href') === '#contact') btn.textContent = v;
+        });
+      }} />
+    </TweaksPanel>
+  );
+}
+
+// Mount services
+const servicesRoot = document.getElementById('services-react');
+if (servicesRoot) {
+  ReactDOM.createRoot(servicesRoot).render(<ServicesSection />);
+}
+
+// Mount tweaks
+const tweaksMount = document.createElement('div');
+tweaksMount.id = 'tweaks-root';
+document.body.appendChild(tweaksMount);
+ReactDOM.createRoot(tweaksMount).render(<TweaksApp />);
+</script>
+
+<script>
+// Nav scroll effect
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  if (window.scrollY > 50) {
+    nav.style.background = 'rgba(5,11,31,0.98)';
+  } else {
+    nav.style.background = 'rgba(5,11,31,0.92)';
+  }
+});
+
+// Hamburger
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+
+// Close nav on link click (mobile)
+document.querySelectorAll('#navLinks a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.getElementById('navLinks').classList.remove('open');
+  });
+});
+
+// Scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Form submission
+// Form submission — AJAX to Formspree, show success state locally
+document.getElementById('bookingForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const form = this;
+  const btn = form.querySelector('.form-submit');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  try {
+    const data = new FormData(form);
+    const response = await fetch('https://formspree.io/f/mlgzgnvp', {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+    if (response.ok) {
+      form.style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+      // Open booking app in new tab after short delay
+      setTimeout(() => {
+        window.open('https://ez-tech-appointment-app.vercel.app/', '_blank');
+      }, 1200);
+    } else {
+      btn.textContent = 'Send Request';
+      btn.disabled = false;
+      alert('Something went wrong. Please try again or call us at (242) 805-0777.');
+    }
+  } catch(err) {
+    btn.textContent = 'Send Request';
+    btn.disabled = false;
+    alert('Something went wrong. Please try again or call us at (242) 805-0777.');
+  }
+});
+</script>
+
+</body>
+</html>
