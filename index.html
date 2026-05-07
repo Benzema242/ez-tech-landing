@@ -1397,9 +1397,17 @@
   }
 }
 @media (max-width: 600px) {
-  .security-strip-inner { grid-template-columns: 1fr; }
+  .security-strip-inner {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    min-height: 0;
+  }
   .security-img-wrap { display: none; }
-  .security-text { grid-column: 1; }
+  .security-text {
+    grid-column: 1;
+    grid-row: 1;
+    padding: 40px 24px;
+  }
 }
 </style>
 
