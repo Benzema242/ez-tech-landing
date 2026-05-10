@@ -1066,6 +1066,14 @@
     transform: translateY(-1px);
   }
 
+  .form-error {
+    display: block;
+    font-size: 12px;
+    color: #f87171;
+    margin-top: 5px;
+    min-height: 16px;
+  }
+
   .form-success {
     display: none;
     text-align: center;
@@ -2017,10 +2025,12 @@
           <div class="form-group">
             <label for="phone">Phone Number</label>
             <input type="tel" id="phone" name="phone" placeholder="(242) 000-0000" required />
+            <span class="form-error" id="phone-error"></span>
           </div>
           <div class="form-group">
             <label for="email">Email Address</label>
             <input type="email" id="email" name="email" placeholder="you@email.com" />
+            <span class="form-error" id="email-error"></span>
           </div>
           <div class="form-group">
             <label for="service">Service Needed</label>
@@ -2302,10 +2312,49 @@ document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
 // Form submission
 // Form submission — AJAX to Formspree, show success state locally
+// Form validation helpers
+const validPhone = v => /^\(\d{3}\) \d{3}-\d{4}$/.test((v || '').trim());
+const validEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((v || '').trim());
+
+const phoneInput = document.getElementById('phone');
+const emailInput = document.getElementById('email');
+const phoneError = document.getElementById('phone-error');
+const emailError = document.getElementById('email-error');
+
+// Auto-format phone as user types
+phoneInput.addEventListener('input', function() {
+  const d = this.value.replace(/\D/g, '');
+  if (!d) { this.value = ''; return; }
+  if (d.length <= 3) { this.value = `(${d}`; return; }
+  if (d.length <= 6) { this.value = `(${d.slice(0,3)}) ${d.slice(3)}`; return; }
+  this.value = `(${d.slice(0,3)}) ${d.slice(3,6)}-${d.slice(6,10)}`;
+});
+
+// Inline errors on blur
+phoneInput.addEventListener('blur', function() {
+  phoneError.textContent = this.value && !validPhone(this.value) ? 'Format: (242) 555-0000' : '';
+});
+emailInput.addEventListener('blur', function() {
+  emailError.textContent = this.value && !validEmail(this.value) ? 'Please enter a valid email address.' : '';
+});
+
 document.getElementById('bookingForm').addEventListener('submit', async function(e) {
   e.preventDefault();
   const form = this;
   const btn = form.querySelector('.form-submit');
+
+  // Validate before sending
+  let hasError = false;
+  if (!validPhone(phoneInput.value)) {
+    phoneError.textContent = 'Format: (242) 555-0000';
+    hasError = true;
+  }
+  if (emailInput.value && !validEmail(emailInput.value)) {
+    emailError.textContent = 'Please enter a valid email address.';
+    hasError = true;
+  }
+  if (hasError) { phoneInput.focus(); return; }
+
   btn.textContent = 'Sending...';
   btn.disabled = true;
 
