@@ -213,8 +213,9 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 10.15;
+    opacity: 0.15;
     z-index: 0;
+    pointer-events: none;
   }
 
   .hero-bg::before {
@@ -1423,7 +1424,7 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg">
-    <video autoplay muted loop playsinline oncanplay="this.playbackRate=0.3">
+    <video autoplay muted loop playsinline disableremoteplayback x-webkit-airplay="deny" disablepictureinpicture oncanplay="this.playbackRate=0.3">
       <source src="uploads/12920663-hd_1920_1080_30fps.mp4" type="video/mp4" />
     </video>
   </div>
